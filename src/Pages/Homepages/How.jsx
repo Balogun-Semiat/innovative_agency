@@ -4,8 +4,8 @@ import Button from '../Button'
 const How = () => {
   return (
     <div className='bg-gray-200 text-blue-950 h-fit lg:h-[80vh] content-center p-10 lg:px-16'>
-        <h1 className='text-5xl mb-3 font-bold'>How It Works</h1>
-        <ol className='mt-5 leading-9 text-xl about' style={{listStyleType:"-moz-initial"}}>
+        <h1 className='text-3xl md:text-5xl mb-3 font-bold'>How It Works</h1>
+        <ol className='mt-5 leading-9 text-lg md:text-xl about' style={{listStyleType:"-moz-initial"}}>
             <p>Finding your next home is simple with our 3-step process:</p>
             <li data-aos="fade-right" className='mt-3'>Search: Use our advanced filters to find properties that match your criteria.</li>
             <li data-aos="fade-right" className='mt-3'>Connect: Reach out to sellers or landlords directly through our platform.</li>

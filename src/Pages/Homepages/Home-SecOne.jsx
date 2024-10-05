@@ -14,15 +14,15 @@ const SecOne = () => {
             <div className='w-full lg:w-1/2 text-blue-950 p-10 lg:pl-10 lg:px-16' 
             data-aos='fade-right'
             >
-               <h1 className='text-5xl font-semibold'>Find Your Dream Home with Ease</h1>
+               <h1 className='text-2xl md:text-5xl font-semibold'>Find Your Dream Home with Ease</h1>
                <p className='text-xl mt-5'>Explore thousands of properties tailored to your needs. Whether you’re buying, selling, or renting, we’re here to help.</p>
                <div className='flex gap-3'>
                <Button 
                innertext={"Search for properties"}
-               className={"rounded-lg p-3 mt-5 bg-blue-950 text-white text-xl"}/>
+               className={"rounded-lg p-2 mt-5 bg-blue-950 text-white text-sm md:text-xl"}/>
                <Button 
                innertext={"Post a property"}
-               className={"rounded-lg p-3 mt-5 bg-blue-950 text-white text-xl"}/>
+               className={"rounded-lg p-2 mt-5 bg-blue-950 text-white text-sm md:text-xl"}/>
                
                </div>
             </div>
