@@ -7,11 +7,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import {Provider} from "react-redux"
 import AuthReducer from "./Pages/redux/AuthSlice.js"
 import PropertyReducer from "./Pages/redux/PropertySlice.js"
+import LoadReducer from "./Pages/redux/LoadingSlice.js"
 
 const store = configureStore({
   reducer: {
     auth: AuthReducer,
-    property: PropertyReducer
+    property: PropertyReducer,
+    LoadingSlice: LoadReducer,  // Added loading reducer for loading state
   }
 });
 
@@ -23,5 +25,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <App />
       </Provider>
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.StrictMode>
 )

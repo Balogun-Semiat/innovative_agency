@@ -13,9 +13,11 @@ import AllProperties from './Pages/AllProperties';
 import ViewDetails from './Pages/ViewDetails';
 import Message from './Pages/Message';
 import Profile from './Pages/Profile';
+import EditPost from './Pages/EditPost';
 import AOS from 'aos';
-import 'aos/dist/aos.css'; // You can also use <link> for styles
-// ..
+import 'aos/dist/aos.css'; 
+import EditProfile from './Pages/EditProfile';
+
 AOS.init();
 
 
@@ -35,6 +37,8 @@ function App() {
       <Route path="/details/:id" element={<PrivateRoute element={<ViewDetails />} />} />
       <Route path="/message/:id" element={<PrivateRoute element={<Message />} />} />
       <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
+      <Route path="/edit-post/:id" element={<PrivateRoute element={<EditPost />} />} />
+      <Route path="/edit-profile" element={<PrivateRoute element={<EditProfile />} />} />
     </Routes>
     
     <ToastContainer

@@ -15,7 +15,7 @@ const FeaturedHouses = () => {
   }
 
   useEffect(() => {
-    const fetchProperties = async () => {
+    const fetchProperties = async() => {
       try {
         const response = await axios.get('https://server-w1u1.onrender.com/get-all');
         setProperties(shuffle(response.data));

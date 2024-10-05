@@ -5,15 +5,21 @@ import { toast} from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { IoEyeSharp } from "react-icons/io5";
 import { FaEyeSlash } from "react-icons/fa6";
+import { setLoading } from './redux/LoadingSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { Spin } from "antd";
+
 
 const SignUp = () => {
+    const loading = useSelector(state => state.LoadingSlice.isLoading);
+    const dispatch = useDispatch();
+
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [role, setRole] = useState("seller")
-    const [showPassword, setShowPassword] = useState(false)
-    
+    const [showPassword, setShowPassword] = useState(false);  
 
     const navigate = useNavigate();
     const togglePasswordVisibility =()=>{
@@ -22,7 +28,8 @@ const SignUp = () => {
     // const notify = () => toast("Wow so easy!");
 
     const handleSignUp = async(ev)=>{
-        ev.preventDefault()
+        ev.preventDefault();
+        dispatch(setLoading(true));
         try {
             const endpoint = "https://server-w1u1.onrender.com/sign-up";
 
@@ -43,6 +50,8 @@ const SignUp = () => {
 
         } catch (error) {
             toast.error(error.response?.data?.message || error.message)
+        } finally {
+            dispatch(setLoading(false));
         }
     }
 
@@ -86,7 +95,10 @@ const SignUp = () => {
 
             <div className='flex justify-center items-center gap-2'>
             <button 
-            className='my-6 w-fit py-2 px-4 text-orange-600 bg-white rounded-full hover:text-white hover:bg-orange-800 ' onClick={handleSignUp}>Sign Up</button>
+            className='my-6 w-fit py-2 px-4 text-orange-600 bg-white rounded-md hover:text-white hover:bg-blue-300 ' onClick={handleSignUp}
+            disabled={loading}>
+                 {loading ? <Spin /> : "Sign Up"}
+            </button>
             <span>Already have an account?
                 <Link to="/login" className='text-white'>Login here</Link>
             </span>

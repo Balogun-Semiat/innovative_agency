@@ -7,12 +7,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from './redux/AuthSlice';
 import { toast } from 'react-toastify';
 import Loader from './Loader';
+import { useNavigate } from 'react-router-dom';
 
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
   const endpoint = "https://server-w1u1.onrender.com/profile";
 
+  const navigate = useNavigate();
 
   const isAuthenticated = useSelector((state)=>(state.auth.isAuthenticated))
   console.log(isAuthenticated)
@@ -76,6 +78,14 @@ const Profile = () => {
     } 
   }
 
+  const handleEdit = async(id)=>{
+    console.log("Product Id : ", id);
+    navigate(`/edit-post/${id}`)
+  }
+
+  async function editUser(){
+      navigate("/edit-profile")
+  }
 
   return (
     <div>
@@ -104,7 +114,9 @@ const Profile = () => {
            </div>
 
            <div className='group relative'>
-           <button className='border h-[30px] px-2'> <MdModeEdit className='text-2xl text-white'/></button> 
+           <button 
+           onClick={editUser} 
+           className='border h-[30px] px-2'> <MdModeEdit className='text-2xl text-white'/> </button> 
            <p className='hidden group-hover:flex absolute -left-7 top-8 p-1 bg-gray-300 rounded-sm text-red-600 text-nowrap text-sm'>Edit Account</p>
            </div>
             <button className='border h-[30px] px-2 text-sm text-white p-1 rounded-sm '>Logout</button>
@@ -112,10 +124,13 @@ const Profile = () => {
          </div>
 
          <div className='grid md:hidden text-white h-fit p-2 items-center bg-gray-700'>
-            <button className='flex gap-2 items-center mb-2'> <MdModeEdit className='text-2xl border w-fit px-2'/>
+            <button className='flex gap-2 items-center mb-2'
+            onClick={editUser}> <MdModeEdit className='text-2xl border w-fit px-2'/>
             <span className=''>Edit profile</span></button> 
 
-            <button className='flex gap-2 items-center mb-2'><MdOutlineDelete className='text-2xl border w-fit px-2 rounded-sm' /> 
+            <button
+            onClick={handleDel} 
+            className='flex gap-2 items-center mb-2'><MdOutlineDelete className='text-2xl border w-fit px-2 rounded-sm' /> 
             <span className=''>Delete profile</span></button>
 
             <button className='border w-fit px-2 text-sm p-1 rounded-sm'

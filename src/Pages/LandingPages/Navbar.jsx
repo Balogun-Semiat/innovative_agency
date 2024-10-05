@@ -80,7 +80,7 @@ const Navbar = () => {
             </div>
 
 
-            <ul className={`flex bg-blue-500 sm:py-5  lg:bg-transparent lg:flex flex-col lg:flex-row lg:block gap-6 lg:gap-10 text-orange-600 items-center w-100 ${isOpen ? "block" : "hidden"}`}>
+            <ul className={`flex bg-gray-200 py-5  lg:bg-transparent lg:flex flex-col lg:flex-row lg:block gap-6 lg:gap-10 text-orange-600 items-center w-100 ${isOpen ? "block" : "hidden"}`}>
             {/* <li>Buy</li> */}
             {/* <li><Link to={"/rent"}>Rent</Link></li> */}
             <li><Link to={"/list-property"}>Post Property</Link></li>
@@ -88,8 +88,11 @@ const Navbar = () => {
             <li>Shortlet</li>
             <li>Contact us</li>
 
-            <div className='border-2 rounded-full w-[40px] h-[40px] flex justify-center items-center'>
-              <Link to="/profile"> <CgProfile className='w-[30px] h-[30px]' /></Link>
+            <div className='rounded-full flex justify-center items-center'>
+              <Link to="/profile"> 
+              <span className='flex items-center content-center gap-1'><CgProfile className='w-[30px] h-[30px]' /> 
+              <p className='text-sm'>Profile</p></span>
+              </Link>
             </div>
 
             <div className='flex gap-5'>

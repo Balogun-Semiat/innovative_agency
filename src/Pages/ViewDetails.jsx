@@ -18,8 +18,8 @@ const ViewDetails = () => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const getProperty = async () => {
-      try {
+    const getProperty = async() => {
+        try{
         const response = await axios.get(endpoint, {
           headers: {
             'Content-Type': 'application/json',

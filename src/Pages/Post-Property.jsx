@@ -11,13 +11,11 @@ import { setHouseDetails, setRole, setLocation, setDescription, setImages, setPr
 
 const ListProperty = () => {
   const isAuthenticated = useSelector((state)=>(state.auth.isAuthenticated));
-  console.log(isAuthenticated)
+  // console.log(isAuthenticated)
 
   
   const houseDetails = useSelector((state) => (state.property.houseDetails));
-  console.log(houseDetails)
   const role = useSelector(state=> state.property.role);
-  console.log(role)
   const location = useSelector(state=> state.property.location);
   const description = useSelector(state=> state.property.description);
   const images = useSelector(state=> state.property.images);
@@ -30,7 +28,6 @@ const ListProperty = () => {
   const [result, setResult] = useState('');
   
   const handleImages = (e)=>{
-    console.log(e)
     const files = e.target.files;
     const fileArray = Array.from(files);
   
@@ -42,7 +39,7 @@ const ListProperty = () => {
       };
     });
   }
-  console.log(result);
+  // console.log(result);
 
   const handlePosting = async(e)=>{
     e.preventDefault()
@@ -50,7 +47,6 @@ const ListProperty = () => {
     const token = localStorage.getItem('token');
     
     const endpoint = "https://server-w1u1.onrender.com/list";
-    console.log(endpoint)
 
     const payload = {
       houseDetails,
@@ -61,7 +57,7 @@ const ListProperty = () => {
       role
     }
 
-    console.log("payload",payload)
+    // console.log("payload",payload)
     const response = await axios.post(endpoint, payload, 
       {
       headers: {
@@ -70,17 +66,15 @@ const ListProperty = () => {
       }
       }
 )
-console.log(response.status)
-    console.log("Your response", response.data)
-    // toast.success("Property posted successfully")
-    // navigate("/all")
+// console.log(response.status)
+    // console.log("Your response", response.data)
   
     if (response.status === 200) {
       dispatch(login(response.data)); // Assuming you have a login action that sets isAuthenticated
       toast.success("Property posted successfully")
       navigate("/all");
     } else {
-      console.log("error:", response.data.message);
+      // console.log("error:", response.data.message);
       alert("Error logging in", response.data.message);
     }
    } catch (error) {
@@ -91,9 +85,9 @@ console.log(response.status)
   return (
     <>
         <Navbar />
-        <div className='w-full bg-blue-400 p-5'>
-        <form action="" className='grid items-center bg-blue-800 p-5 lg:mx-auto w-fit lg:w-10/12'> 
-            <h3 className='text-3xl font-bold text-white text-center'>Enter your property details here</h3>
+        <div className='w-full bg-blue-400 '>
+        <form action="" className='grid items-center bg-blue-800 p-7 md:p-5 lg:mx-auto lg:w-10/12'> 
+            <h3 className='text-xl md:text-3xl font-bold text-white text-center'>Enter your property details here</h3>
             <input type="text" 
             className='my-6 p-2  focus:ring-4 ring-blue-600 rounded-md outline-0'
             onChange={(ev)=> dispatch(setHouseDetails(ev.target.value))}
