@@ -25,51 +25,79 @@ html {
   .featured{
     overflow: hidden;
   }
-.gradient{
-    position: absolute;
-    top: -12px;
-    left: -14px;
-    width: 317px;
-    height: 274px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.8) 100%);
-    opacity: 0;
-    transition: 0.3 ease;
-}
-
-.featured:hover .featuredImage{
-    transform: scale(1.1);    
-}
   
-.embla {
+  .featured:hover .featuredImage{
+    transform: scale(1.1);    
+  }
+  
+  .embla {
+    position: relative;
     overflow: hidden;
-    height: 70vh;
+    width: 100%;
   }
   
   .embla__viewport {
     overflow: hidden;
     width: 100%;
+    /* position: relative; */
   }
   
   .embla__container {
     display: flex;
     user-select: none;
-    -webkit-touch-callout: none;
-    -webkit-tap-highlight-color: transparent;
-    margin-left: -10px;
-    gap: 10px;
+    gap: 15px;
+    margin-left: -20px;
+    height: 400px;
   }
   
   .embla__slide {
     position: relative;
-    min-width: 30%; 
-    padding-left: 30px;
-    height: 300px;
+    flex: 0 0 40%;
+    height: 400px;
+    min-width: 0;
   }
-  
-  .card:hover{
-    transform: scale(1.1);
-  }
+  .featured-img{
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+    transition: transform 0.3s;
+  object-position: center;
+  position: relative;
+}
+.location{
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  text-shadow: 0, 0, 1px, 1px;
+}
+.gradient{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: 400px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.8) 100%);
+    opacity: 0;
+    transition: 0.3 ease;
+}
+.featured-img:hover .gradient{
+  opacity: 100;
+}
+.card:hover{
+  transform: scale(1.1);
+}
 
+@media (max-width: 768px) {
+  .embla__slide {
+    flex: 0 0 70%; /* On smaller screens, slides take full width */
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .embla__slide {
+    flex: 0 0 50%; /* On tablets, slides take 50% width */
+  }
+}
 /* body{
     overflow-x: hidden;
 } */
