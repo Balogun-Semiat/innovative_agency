@@ -23,6 +23,7 @@ const Profile = () => {
   const handleLogOut = ()=>{
     const confirmDelete = window.confirm("Are you sure you want to log out?");
     if (!confirmDelete) return
+    localStorage.removeItem('token');
     dispatch(logout())
     toast.success("Logging out")
     // redirect("/")

@@ -33,8 +33,6 @@ const AllProperties = () => {
 
   const singleImageIndex = 0;
 
-  
-
   if (loading) {
     return (
       <div>
@@ -54,7 +52,7 @@ const AllProperties = () => {
         (
           <div className=''>
             {properties.map((item,index)=>(
-              <div className='flex flex-col bg-white lg:flex-row gap-7 mt-3 items-center md:relative'>
+              <div key={index} className='flex flex-col bg-white lg:flex-row gap-7 mt-3 items-center md:relative'>
               <div >
                <p className='text-white font-bold bg-orange-600 p-2 text-center'>Available for {item.role}</p>
                {item.images.length > singleImageIndex && (

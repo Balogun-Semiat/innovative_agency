@@ -8,32 +8,20 @@ import { toast } from 'react-toastify';
 import Loader from './Loader';
 import {setLoading} from "./redux/LoadingSlice"
 import { Spin } from "antd";
+import Navbar from './LandingPages/Navbar';
 
 
 const LogIn = () => {
-
-    const loading = useSelector(state => state.LoadingSlice.isLoading)
+    const loading = useSelector(state => state.LoadingSlice.isLoading);
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+    console.log("auth", isAuthenticated)
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("");
-    // const [loading, setLoading] = useState(false);
+
     const dispatch = useDispatch();
     const navigate = useNavigate()
-    // const {handleBlur, handleChange, touched, errors} = useFormik({
-    //     initialValues:{
-    //         email: "",
-    //         password: ""
-    //     },
-    //     validationSchema: Yup.object({
-    //         email: Yup.string()
-    //            .email("Invalid email address")
-    //            .required("Email is required"),
-    //         password: Yup.string()
-    //             .matches(/^(A-Za-z0-9)^/)
-    //            .min(8, "Password must be at least 8 characters long")
-    //            .required("Password is required")
-    //     })
-    // })
+   
 
     const myStyle = {
         borderRadius: "40px 40px 0 0",
@@ -58,16 +46,17 @@ const LogIn = () => {
         })
        
 
-        console.log(response);
+        console.log("response", response);
 
         // if(response.status === 401) return alert("User not found")
         
         if(response.status === 200){
             localStorage.setItem('token', response.data.token);
             console.log('token-token', response.data.token)
-            dispatch(login(response.data))
-            toast.success("Logging user in")
             navigate("/home")
+            dispatch(login(response.data.token))
+            toast.success("Logging user in")
+            
         } else{
             console.log("error:", response.data.message)
             toast.error(`Error logging in: ${response.data.message}`)
@@ -82,6 +71,7 @@ const LogIn = () => {
     
   return (
     <>
+      <Navbar />
         <div className='bg-blue-800 mx-auto w-10/12  md:w-1/2 my-5 pt-5 pb-2'>
         
         <div className='grid bg-white text-black-500 mt-[70px] p-5' style={myStyle}>

@@ -17,28 +17,43 @@ import EditPost from './Pages/EditPost';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
 import EditProfile from './Pages/EditProfile';
+import { useDispatch } from 'react-redux';
+import { checkAuth } from './Pages/redux/AuthSlice';
 
 AOS.init();
 
 
 function App() {
+  const dispatch = useDispatch();
+  
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     dispatch(login({ token }));
+  //   }
+  //   console.log("ttt", token)
+  // }, [dispatch]);
 
   return (
     <>
     <Routes>
-      <Route path="/" element= {<Homepage />} />
-      <Route path='/sign-up' element={<SignUp />} />
+      {/* <Route path="/" element= {<PrivateRoute element={<Homepage/>} />} /> */}
+      {/* <Route path="/sign-up" element={<PrivateRoute element={<SignUp />} />} /> */}
+      {/* <Route path="/login" element={<PrivateRoute element={<LogIn />} />} /> */}
+      <Route path='/' element={<Homepage />} />
       <Route path='/login' element={<LogIn />} />
+      <Route path='/sign-up' element={<SignUp />} />
+
       <Route path="/home" element={<PrivateRoute element={<Home />} />} />
       <Route path="/list-property" element={<PrivateRoute element={<ListProperty />} />} />
       <Route path="/rent" element={<PrivateRoute element={<RentProperty />} />} />
       <Route path="/all" element={<PrivateRoute element={<AllProperties />} />} />
-      {/* <Route path='/details/:id' element={<ViewDetails />} /> */}
       <Route path="/details/:id" element={<PrivateRoute element={<ViewDetails />} />} />
       <Route path="/message/:id" element={<PrivateRoute element={<Message />} />} />
       <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
       <Route path="/edit-post/:id" element={<PrivateRoute element={<EditPost />} />} />
       <Route path="/edit-profile" element={<PrivateRoute element={<EditProfile />} />} />
+   
     </Routes>
     
     <ToastContainer

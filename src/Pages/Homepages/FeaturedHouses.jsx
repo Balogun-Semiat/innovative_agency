@@ -1,10 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Carousel } from "antd"
+// import useEmblaCarousel from "embla-carousel-react";
+// import Autoplay from 'embla-carousel-autoplay';
 
 
 const FeaturedHouses = () => {
   const [properties, setProperties] = useState([]);
+  // const [emblaRef] = useEmblaCarousel({ loop: false }, [Autoplay({ delay: 3000 })])
 
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -33,18 +37,18 @@ const FeaturedHouses = () => {
         <p className='underline mt-3'>
            <Link to="/all">View available properties</Link>
            </p>
-        <div data-aos="fade-up-left" className="featured-houses grid grid-cols-2 lg:grid-cols-4 gap-5 mt-4">
-            {properties.slice(0, 4).map(property => (
-        <div key={property._id} className="property-card ">
+        <div 
+        //data-aos="fade-up-left" 
+        className="grid grid-cols-2 lg:grid-cols-4 gap-5 mt-4">
+            {properties.slice(0, 4).map((property, index) => (
+        <div key={index} className="">
             <div className=''>
             <img src={property.images[0].secure_url} alt={property.title} className='h-[180px] lg:h-[300px] w-[300px] gap-3' />
             </div>
-            {/* <h3>{property.houseDetails}</h3>
-            <p>{property.location}</p>
-            <p>${property.price}</p> */}
         </div>
             ))}
     </div>
+    <hr />
     </div>
   )
 }

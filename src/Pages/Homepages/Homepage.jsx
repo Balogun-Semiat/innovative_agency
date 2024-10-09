@@ -6,6 +6,8 @@ import Services from './Services'
 import How from './How'
 import Navbar from '../LandingPages/Navbar'
 import Loader from '../Loader';
+import  EmblaCarousel  from '../EmblaCarousel'
+
 
 const Homepage = () => {
   const [loading, setLoading] = useState(false);
@@ -26,8 +28,10 @@ const Homepage = () => {
         <SecOne />
         <About />
         <FeaturedHouses />
+        <hr />
         <Services />
         <How />
+        {/* <EmblaCarousel /> */}
     </div>
   )
 }

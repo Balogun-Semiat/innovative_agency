@@ -12,12 +12,13 @@ export const AuthSlice = createSlice({
         },
         logout(state) {
             state.isAuthenticated = false;
+            localStorage.removeItem('token');
+            console.log("isauth", state.isAuthenticated)
         //    redirect("/")
         },
-
     }
 })
 
-export const {login, logout} = AuthSlice.actions
+export const {login, logout, checkAuth} = AuthSlice.actions
 
 export default AuthSlice.reducer

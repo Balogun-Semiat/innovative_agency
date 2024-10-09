@@ -13,6 +13,8 @@ import { Spin } from "antd";
 const SignUp = () => {
     const loading = useSelector(state => state.LoadingSlice.isLoading);
     const dispatch = useDispatch();
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+    console.log("sign-up", isAuthenticated)
 
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")

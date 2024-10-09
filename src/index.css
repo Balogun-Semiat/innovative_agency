@@ -6,12 +6,16 @@
     rgba(0, 0, 0, 0.7) 100%)
 } */
  
+html {
+  scroll-behavior: smooth;
+}
+
 .house-bg{
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0, rgba(0, 0, 0, 0.7) 60%,
-    rgba(0, 0, 0, 0.7) 100%), url(https://th.bing.com/th/id/R.ff20b5ef8b0405610b226866b74b12f2?rik=eGIy74viLRY%2b%2bA&riu=http%3a%2f%2fww1.prweb.com%2fprfiles%2f2015%2f03%2f02%2f12556168%2fGeneva_Q1_Facade.jpg&ehk=JPpfgQiaCOhK7BwYU8TBB6FCKISsQc%2fvK6kd9ElEKGs%3d&risl=1&pid=ImgRaw&r=0) ;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0, rgba(0, 0, 0, 0.5) 60%,
+    rgba(0, 0, 0, 0.5) 100%), url(https://th.bing.com/th/id/R.ff20b5ef8b0405610b226866b74b12f2?rik=eGIy74viLRY%2b%2bA&riu=http%3a%2f%2fww1.prweb.com%2fprfiles%2f2015%2f03%2f02%2f12556168%2fGeneva_Q1_Facade.jpg&ehk=JPpfgQiaCOhK7BwYU8TBB6FCKISsQc%2fvK6kd9ElEKGs%3d&risl=1&pid=ImgRaw&r=0) ;
     background-size: cover;
     background-position: center;
-    height: 90vh;
+    height: 84vh;
     /* @apply rounded-xl shadow-2xl; */
 }
 .featuredImage{
@@ -36,19 +40,35 @@
     transform: scale(1.1);    
 }
   
-.featured:hover .gradient{
-    opacity: 0.4;
-}
-.discover{
-    display: none;
-    position: absolute;
-    top: 40%;
-    left: 35%;
+.embla {
+    overflow: hidden;
+    height: 70vh;
   }
-.featured:hover .discover{
-    display: block;
-}
-
+  
+  .embla__viewport {
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .embla__container {
+    display: flex;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+    margin-left: -10px;
+    gap: 10px;
+  }
+  
+  .embla__slide {
+    position: relative;
+    min-width: 30%; 
+    padding-left: 30px;
+    height: 300px;
+  }
+  
+  .card:hover{
+    transform: scale(1.1);
+  }
 
 /* body{
     overflow-x: hidden;

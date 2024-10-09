@@ -12,14 +12,19 @@ const Navbar = () => {
 
   const navigate = useNavigate()
   const isAuthenticated = useSelector((state)=>(state.auth.isAuthenticated));
+  console.log("Navcheck", isAuthenticated)
+
   const dispatch = useDispatch();
   
   const handleLogIn = ()=>{
-    dispatch(login())
+    navigate("/login")
   }
   const handleLogOut = ()=>{
+    localStorage.removeItem('token');
     dispatch(logout())
+    
   }
+
   const goToHome = ()=>{
     navigate("/home")
   }
@@ -62,7 +67,7 @@ const Navbar = () => {
              </div>
             
           ) : (
-          <div className='lg:flex  items-center justify-around'>
+          <div className='lg:flex  items-center justify-around '>
                 <div className='flex items-center justify-around '>
                 <div className='grid coy-logos'>
                 <div className='flex items-center pointer' onClick={goToHome}>
@@ -80,13 +85,15 @@ const Navbar = () => {
             </div>
 
 
-            <ul className={`flex bg-gray-200 py-5  lg:bg-transparent lg:flex flex-col lg:flex-row lg:block gap-6 lg:gap-10 text-orange-600 items-center w-100 ${isOpen ? "block" : "hidden"}`}>
+            <ul className={`flex bg-gray-200 py-5 lg:bg-transparent lg:flex flex-col lg:flex-row lg:block gap-6  text-blue-950 items-center w-100 ${isOpen ? "block" : "hidden"}`}>
             {/* <li>Buy</li> */}
             {/* <li><Link to={"/rent"}>Rent</Link></li> */}
-            <li><Link to={"/list-property"}>Post Property</Link></li>
-            <li><Link to={"/all"}>See all Properties</Link></li>
-            <li>Shortlet</li>
-            <li>Contact us</li>
+            <li className='hover:border-b-2 border-b-gray-600' onClick={goToHome}>Home</li>
+            <li className='hover:border-b-2 border-b-gray-600'><a href="#about-us">About</a></li>
+            <li className='hover:border-b-2 border-b-gray-600'><a href="#services">Services</a></li>
+            <li className='hover:border-b-2 border-b-gray-600'><Link to={"/list-property"}>Post Property</Link></li>
+            <li className='hover:border-b-2 border-b-gray-600'><Link to={"/all"}>See all Properties</Link></li>
+            <li className='hover:border-b-2 border-b-gray-600'><a href="#contact">Contact us</a></li>
 
             <div className='rounded-full flex justify-center items-center'>
               <Link to="/profile"> 
