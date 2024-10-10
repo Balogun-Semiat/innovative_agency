@@ -8,7 +8,7 @@ import { FaBars, FaAngleDown} from "react-icons/fa6";
 import { FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   const navigate = useNavigate()
   const isAuthenticated = useSelector((state)=>(state.auth.isAuthenticated));

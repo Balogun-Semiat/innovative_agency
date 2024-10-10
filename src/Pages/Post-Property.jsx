@@ -85,8 +85,8 @@ const ListProperty = () => {
   return (
     <>
         <Navbar />
-        <div className='w-full bg-blue-400 '>
-        <form action="" className='grid items-center bg-blue-800 p-7 md:p-5 lg:mx-auto lg:w-10/12'> 
+        <div className='w-full bg-blue-400 p-5'>
+        <form action="" className='grid items-center bg-transparent lg:bg-blue-800 md:p-5 lg:mx-auto w-full lg:w-10/12'> 
             <h3 className='text-xl md:text-3xl font-bold text-white text-center'>Enter your property details here</h3>
             <input type="text" 
             className='my-6 p-2  focus:ring-4 ring-blue-600 rounded-md outline-0'

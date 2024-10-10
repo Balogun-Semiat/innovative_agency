@@ -22,14 +22,14 @@ const SecOne = () => {
   return (
     <>
         <div className='house-bg content-center text-center p-5 lg:p-20'>
-            <h1 className='hidden lg:block text-3xl lg:text-5xl text-orange-600 font-bold' style={myStyle}>Find your dream property - Buy, <br />Sell, and Connect with Ease</h1>
+            <h1 className='hidden lg:block text-3xl lg:text-5xl text-white font-bold' style={myStyle}>Find your dream property - Buy, <br />Sell, and Connect with Ease</h1>
 
             <h1 className='block lg:hidden text-3xl md:text-4xl lg:text-5xl text-white font-bold' style={secStyle} md:style={myStyle}>Find your dream property - Buy, Sell, and Connect with Ease</h1>
 
-            <p className='hidden lg:block text-white mt-8 text-md md:text-xl mb-5'>Whether you're looking to buy your first home or sell a property, <br /> our platform offers a seamless and secure experience.<br /> Discover the  perfect  place with our  easy-to-use <br /> search tools and verified listings.          
+            <p className='hidden lg:block text-white mt-6 text-md md:text-xl mb-5'>Whether you're looking to buy your first home or sell a property, <br /> our platform offers a seamless and secure experience.<br /> Discover the  perfect  place with our  easy-to-use <br /> search tools and verified listings.          
             </p>
 
-            <p className='lg:hidden text-white text-wrap mt-4 text-md md:text-xl mb-5'>Whether you're looking to buy your first home or sell a property,  our platform offers a seamless and secure experience. Discover the perfect place with our  easy-to-use search tools and verified listings.          
+            <p className='lg:hidden text-white text-wrap mt-3 text-md md:text-xl mb-5'>Whether you're looking to buy your first home or sell a property,  our platform offers a seamless and secure experience. Discover the perfect place with our  easy-to-use search tools and verified listings.          
             </p>
 
             {/* <p>Contact us here</p>
