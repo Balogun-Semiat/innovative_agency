@@ -9,7 +9,6 @@ const Homepage = () => {
 
   return (
     <div className='overflow-y-hidden'>
-        <Navbar />
         <SecOne />
     </div>
   )

@@ -20,7 +20,7 @@ const ConfirmDelete = ({ onDelete }) => {
 
   return (
     <AlertDialog>
-  <AlertDialogTrigger disabled={loading}>
+  <AlertDialogTrigger className='bg-red-500 p-2 text-white' disabled={loading}>
   {loading ? "Deleting..." : "Delete"}
   </AlertDialogTrigger>
   <AlertDialogContent>

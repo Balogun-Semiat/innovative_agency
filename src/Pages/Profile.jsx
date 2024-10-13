@@ -79,7 +79,7 @@ const Profile = () => {
       })
       console.log(response.data.message)
       toast.success("User and all associated posts have been deleted")
-
+      dispatch(logout())
       // setProperties(properties.filter(property => property._id !== id));
   }
   
@@ -97,6 +97,7 @@ const Profile = () => {
       // setProperties(properties.filter(property => property._id !== id));
       profile.postings.filter(posting => posting._id !== id);
       console.log(profile.postings)
+      
 
     } catch (error) {
       console.log(error);
@@ -118,7 +119,6 @@ const Profile = () => {
 
   return (
     <div>
-      <Navbar/>
        {profile ? 
       (<div className='mx-auto border w-full md:w-10/12 lg:8/12 my-5 p-5'>
          <div>
@@ -136,9 +136,9 @@ const Profile = () => {
 
             <div className='hidden md:flex gap-5 content-center '>
            <div className='group relative'>
-           <button onClick={handleDel} className='border h-[30px] px-2 flex items-center rounded-sm '>
+           <ConfirmDelete onDelete={handleDel} className='border h-[30px] px-2 flex items-center rounded-sm '>
               <MdOutlineDelete className='text-2xl text-white' />
-            </button>
+            </ConfirmDelete>
             <p className='hidden group-hover:flex absolute -left-7 top-8 p-1 bg-gray-300 rounded-sm text-red-600 text-nowrap text-sm'>Delete Account</p>
            </div>
 
@@ -214,7 +214,7 @@ const Profile = () => {
                 <ConfirmDelete onDelete={() => handleDelete(property._id)} /> 
 
                 <button onClick={()=>handleEdit(property._id)}
-                className='bg-red-500 p-2 text-white'>Edit Post</button>
+                className='bg-orange-600 p-2 text-white'>Edit Post</button>
                 </div>
                 </div>
   

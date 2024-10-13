@@ -60,8 +60,6 @@ const ViewDetails = () => {
   // Render property details
   return (
     <div>
-      <Navbar />
-
       <div className='bg-gray-700 p-5'>
         <p className='p-2 text-white text-xl' style={{fontFamily:"sans-serif"}}>Pictures of the property</p>
 

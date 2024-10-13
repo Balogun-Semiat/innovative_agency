@@ -8,6 +8,7 @@ import { FaEyeSlash } from "react-icons/fa6";
 import { setLoading } from './redux/LoadingSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Spin } from "antd";
+import welc from "../img/welc.jpeg"
 
 
 const SignUp = () => {
@@ -58,25 +59,31 @@ const SignUp = () => {
     }
 
   return (
-    <div className='mx-auto my-20'>
-        <form action="" className='grid mx-5 lg:mx-20 bg-blue-800 p-5'> 
-            <h3 className='text-3xl font-bold text-white text-center'>Register your Details Here</h3>
+    <div className='flex bg-lemon content-center '>
+        <div className='hidden lg:flex w-1/2 justify-center content-center items-center'>
+            {/* <img src={happy} className='w-full h-bg-green-300' alt="" /> */}
+            <img src={welc} className='w-full h-bg-green-300 h-[84vh]' alt="" />
+        </div>
+
+        <div className='w-full lg:w-1/2 bg-white m-5'>
+        <form action="" className='grid p-5 shadow-lg '> 
+            <h3 className='text-3xl font-bold text-center'>Register your Details Here</h3>
             <input type="text" 
-            className='my-6 p-2  focus:ring-4 ring-blue-600 rounded-md outline-0'
+            className='my-6 p-2 shadow-md focus:ring-4 ring-blue-600 rounded-md outline-0 bg-yellow-300'
             onChange={(ev)=>setFirstName(ev.target.value)}
             placeholder='Enter your first name'/>
             <input type="text" 
-            className='mb-6 p-2  focus:ring-4 ring-blue-600 rounded-md outline-0'
+            className='mb-6 p-2 shadow-md focus:ring-4 ring-blue-600 rounded-md outline-0 bg-yellow-300'
             onChange={(ev)=>setLastName(ev.target.value)}
             placeholder='Enter your last name'/>
-            <input type="text" 
-            className='mb-6 p-2  focus:ring-4 ring-blue-600 rounded-md outline-0'
+            <input type="email" 
+            className='mb-6 p-2 shadow-md focus:ring-4 ring-blue-600 rounded-md outline-0 bg-yellow-300'
             onChange={(ev)=>setEmail(ev.target.value)}
             placeholder='Enter your email'/>
             
             <div className='relative'>
             <input type={showPassword ? "text" : "password"}
-            className='mb-6 p-2 w-full focus:ring-4 ring-blue-600 rounded-md outline-0' 
+            className='mb-6 p-2 w-full shadow-md  focus:ring-4 ring-blue-600 rounded-md outline-0 bg-yellow-300' 
             onChange={(ev)=>setPassword(ev.target.value)}
             placeholder='Enter your password'/>
             <button 
@@ -88,7 +95,7 @@ const SignUp = () => {
 
             <label htmlFor="" className='text-white'>Are you registering as a buyer or seller?</label>
             <select onChange={(ev)=>setRole(ev.target.value)} 
-            className='p-2'
+            className='p-2 shadow-md bg-yellow-300'
             name={role} 
             defaultValue={"seller"} id="">
                 <option value="seller">Seller</option>
@@ -97,16 +104,17 @@ const SignUp = () => {
 
             <div className='flex justify-center items-center gap-2'>
             <button 
-            className='my-6 w-fit py-2 px-4 text-orange-600 bg-white rounded-md hover:text-white hover:bg-blue-300 ' onClick={handleSignUp}
+            className='my-6 w-fit py-2 shadow-md px-4 text-white-600 bg-yellow-300 rounded-md hover:text-white hover:bg-blue-300' onClick={handleSignUp}
             disabled={loading}>
                  {loading ? <Spin /> : "Sign Up"}
             </button>
-            <span>Already have an account?
-                <Link to="/login" className='text-white'>Login here</Link>
-            </span>
+            <p>Already have an account?
+                <Link to="/login" className='text-blue-600 underline'><span>Login here</span></Link>
+            </p>
            </div>
            
         </form>
+        </div>
     </div>
   )
 }

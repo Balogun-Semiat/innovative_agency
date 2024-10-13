@@ -24,11 +24,9 @@ const Homepage = () => {
   }
   return (
     <div className='overflow-x-hidden'>
-        <Navbar />
         <SecOne />
         <About />
         <FeaturedHouses />
-        <hr />
         <Services />
         <How />
         {/* <EmblaCarousel /> */}

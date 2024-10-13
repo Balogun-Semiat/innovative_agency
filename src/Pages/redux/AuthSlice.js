@@ -5,13 +5,17 @@ export const AuthSlice = createSlice({
     name: 'auth',
     initialState: {
         isAuthenticated: false,
+        token: null,
     },
     reducers: {
-        login(state) {
-            state.isAuthenticated = true;
+        login(state, action) {
+            state.isAuthenticated = !!action.payload.token ;
+            state.token = action.payload.token;
+            console.log("isauth", state.isAuthenticated)
         },
         logout(state) {
             state.isAuthenticated = false;
+            state.token = null;
             localStorage.removeItem('token');
             console.log("isauth", state.isAuthenticated)
         //    redirect("/")

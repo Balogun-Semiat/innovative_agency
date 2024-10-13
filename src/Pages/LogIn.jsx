@@ -9,6 +9,9 @@ import Loader from './Loader';
 import {setLoading} from "./redux/LoadingSlice"
 import { Spin } from "antd";
 import Navbar from './LandingPages/Navbar';
+// import welcome from "../img/welcome.gif"
+// import happy from "../img/happy.jpeg"
+import welc from "../img/welc.jpeg"
 
 
 const LogIn = () => {
@@ -24,7 +27,7 @@ const LogIn = () => {
    
 
     const myStyle = {
-        borderRadius: "40px 40px 0 0",
+        // borderRadius: "40px 40px 0 0",
         fontFamily: ""
     }
 
@@ -50,15 +53,19 @@ const LogIn = () => {
 
         // if(response.status === 401) return alert("User not found")
         
-        if(response.status === 200){
-            localStorage.setItem('token', response.data.token);
-            console.log('token-token', response.data.token)
-            navigate("/home")
-            dispatch(login(response.data.token))
-            toast.success("Logging user in")
-            
+        const { token } = response.data.token;
+
+        // If token is received, dispatch the login action
+        if (token) {
+          dispatch(login({ token })); // Dispatch login action to Redux
+          localStorage.setItem("tokeeen", token); // Store token in localStorage
+          console.log(token)
+          toast.success("Login successful!");
+  
+          // Navigate to home or desired page after successful login
+          navigate("/home");
         } else{
-            console.log("error:", response.data.message)
+            console.log("error: No token provided");
             toast.error(`Error logging in: ${response.data.message}`)
         }
         } catch (error) {
@@ -71,22 +78,21 @@ const LogIn = () => {
     
   return (
     <>
-      <Navbar />
-        <div className='bg-blue-800 mx-auto w-10/12  md:w-1/2 my-5 pt-5 pb-2'>
+        <div className='flex bg-lemon content-center gap-8 items-center content-center p-5 lg:pl-12 lg:h-[84vh]' style={{fontFamily:"cursive"}}>
         
-        <div className='grid bg-white text-black-500 mt-[70px] p-5' style={myStyle}>
-            <h1 className='text-3xl font-bold text-center mb-5' style={{fontFamily:""}}>Log In Here</h1>
-            <label htmlFor="Email" className='font-bold'>Enter your Email:</label>
-            <input type="text"
+        <div className='grid bg-white mx-auto p-5 shadow-lg w-full lg:w-1/2 '>
+            <h1 className='text-xl text-center mb-5 text-lemon' style={{fontFamily:""}}>Log In Here</h1>
+            <label htmlFor="Email" className='text-lemon'>Enter your Email:</label>
+            <input type="email"
             id='email' 
-            className='mb-6 p-2 bg-gray-200  focus:ring-4 ring-blue-600 rounded-md outline-0 '
+            className='mb-6 shadow-md p-2 bg-gray-100  focus:ring-4 ring-blue-600 rounded-md outline-0 '
             onChange={(ev)=>setEmail(ev.target.value)}
             // placeholder='Enter your email'
             />
             
-            <label htmlFor="password" className='font-bold'>Enter your password:</label>
-            <input type="text"
-            className='mb-6 p-2 bg-gray-200 focus:ring-4 ring-blue-600 rounded-md outline-0' 
+            <label htmlFor="password" className='text-lemon'>Enter your password:</label>
+            <input type="password"
+            className='mb-6 p-2 shadow-md bg-gray-100 focus:ring-4 ring-blue-600 rounded-md outline-0' 
             onChange={(ev)=>setPassword(ev.target.value)}
             // placeholder='Enter your password'
             />
@@ -108,6 +114,13 @@ const LogIn = () => {
             </span>
             
             </div>
+        </div>
+        
+
+        <div className='hidden lg:flex w-1/2 justify-center content-center items-center ' >
+            {/* <img src={happy} className='w-full h-bg-green-300' alt="" /> */}
+            <img src={welc} className='w-full h-bg-green-300 h-[84vh]' alt="" />
+          
         </div>
     </div>
     </>

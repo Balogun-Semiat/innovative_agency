@@ -44,7 +44,7 @@ const AllProperties = () => {
   
   return (
     <>
-    <Navbar />
+   
     <h1 className='text-3xl my-5 text-blue-800 px-10 lg:px-16'>See available properties here</h1>
     <div className='px-10 lg:px-16 py-5 grid w-100 gap-3 bg-gray-700'>
         {properties.length === 0 ? (<p className="text-center text-white text-2xl">No properties available</p>) 

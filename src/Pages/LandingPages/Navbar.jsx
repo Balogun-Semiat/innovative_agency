@@ -20,9 +20,10 @@ const Navbar = () => {
     navigate("/login")
   }
   const handleLogOut = ()=>{
+    sessionStorage.removeItem('isFirstLogin');
     localStorage.removeItem('token');
     dispatch(logout())
-    
+    navigate('/')
   }
 
   const goToHome = ()=>{
@@ -35,7 +36,7 @@ const Navbar = () => {
 
   return (
    <>
-       <nav className='sticky top-0 z-50 bg-gray-300 shadow-lg py-2 w-100'>
+       <nav className='sticky top-0 z-50 bg-white shadow-lg py-2 w-100'>
         <div>
           {!isAuthenticated ? (
              <div className='flex items-center justify-around'>
@@ -93,7 +94,7 @@ const Navbar = () => {
             <li className='hover:border-b-2 border-b-gray-600'><a href="#services">Services</a></li>
             <li className='hover:border-b-2 border-b-gray-600'><Link to={"/list-property"}>Post Property</Link></li>
             <li className='hover:border-b-2 border-b-gray-600'><Link to={"/all"}>See all Properties</Link></li>
-            <li className='hover:border-b-2 border-b-gray-600'><a href="#contact">Contact us</a></li>
+            <li className='hover:border-b-2 border-b-gray-600'><Link to={'/contact-us'}>Contact us</Link></li>
 
             <div className='rounded-full flex justify-center items-center'>
               <Link to="/profile"> 

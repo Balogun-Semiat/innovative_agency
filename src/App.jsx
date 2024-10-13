@@ -19,23 +19,56 @@ import 'aos/dist/aos.css';
 import EditProfile from './Pages/EditProfile';
 import { useDispatch } from 'react-redux';
 import { checkAuth } from './Pages/redux/AuthSlice';
+import Contact from './Pages/Contact';
+import Navbar from './Pages/LandingPages/Navbar';
+import { login, logout } from './Pages/redux/AuthSlice';
+import { validateToken, checkTokenAndNotify } from "./Pages/Authorization/ValidateToken";
+import {jwtDecode} from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+// import { checkTokenAndNotify } from './Pages/Authorization/checkToken';
 
 AOS.init();
 
-
+ 
 function App() {
   const dispatch = useDispatch();
-  
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token');
-  //   if (token) {
-  //     dispatch(login({ token }));
-  //   }
-  //   console.log("ttt", token)
-  // }, [dispatch]);
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const token = localStorage.getItem('token'); 
+    const handleLogIn = async() =>{
+      if (token && validateToken(token)) {
+        // If token is valid, log the user in
+        console.log("tokenn", token)
+        dispatch(login({ token }));
+        // navigate("/home");
+        // toast.success("Logging user in")
+      } else {
+        // If token is invalid, log the user out
+        localStorage.removeItem('token');
+        dispatch(logout());
+      }
+    }
+    handleLogIn()
+  }, [dispatch]);
+
+  const validateToken = (token) => {
+    try {
+      const decodedToken = jwtDecode(token);
+      return decodedToken.exp * 1000 > Date.now(); // Check if token has expired
+    } catch (error) {
+      return false;
+    }
+  };
+
+  useEffect(() => {
+    checkTokenAndNotify(dispatch, () => dispatch(logout())); // Call the token check function on app load
+  }, [dispatch]);
 
   return (
     <>
+    <Navbar />
     <Routes>
       {/* <Route path="/" element= {<PrivateRoute element={<Homepage/>} />} /> */}
       {/* <Route path="/sign-up" element={<PrivateRoute element={<SignUp />} />} /> */}
@@ -53,6 +86,7 @@ function App() {
       <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
       <Route path="/edit-post/:id" element={<PrivateRoute element={<EditPost />} />} />
       <Route path="/edit-profile" element={<PrivateRoute element={<EditProfile />} />} />
+      <Route path="/contact-us" element={<PrivateRoute element={<Contact />} />} />
    
     </Routes>
     
