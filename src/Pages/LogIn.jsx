@@ -15,7 +15,7 @@ const LogIn = () => {
     const loading = useSelector(state => state.LoadingSlice.isLoading);
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
     const user = useSelector((state)=>(state.auth.user));
-    console.log("user", user)
+    // console.log("user", user)
 
     // console.log("auth", isAuthenticated)
 
@@ -53,7 +53,7 @@ const LogIn = () => {
 
      
 
-        console.log(token, user)
+        // console.log(token, user)
        
         if (token) {
             localStorage.setItem("token", token);
