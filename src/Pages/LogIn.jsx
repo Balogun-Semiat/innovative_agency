@@ -17,7 +17,7 @@ const LogIn = () => {
     const user = useSelector((state)=>(state.auth.user));
     console.log("user", user)
 
-    console.log("auth", isAuthenticated)
+    // console.log("auth", isAuthenticated)
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("");

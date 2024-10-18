@@ -56,7 +56,7 @@ const ListProperty = () => {
     e.preventDefault()
    try {
     const token = localStorage.getItem('token');
-    console.log(token)
+    // console.log(token)
     
     const endpoint = "https://server-w1u1.onrender.com/list";
 
@@ -69,7 +69,7 @@ const ListProperty = () => {
       role
     }
 
-    console.log("payload", payload)
+    // console.log("payload", payload)
     const response = await axios.post(endpoint, payload, {
       headers: {
           'Content-Type': 'application/json',
@@ -77,8 +77,8 @@ const ListProperty = () => {
       }
       }
 )
-    console.log("response-stat", response.status)
-    console.log("Your response", response.data)
+    // console.log("response-stat", response.status)
+    // console.log("Your response", response.data)
     // toast.success("Property posted successfully")
     // navigate("/all")
   
@@ -87,11 +87,11 @@ const ListProperty = () => {
       toast.success("Property posted successfully")
       navigate("/all");
     } else {
-      console.log("error:", response.data.message);
-      alert("Error logging in", response.data.message);
+      // console.log("error:", response.data.message);
+      toast.error("Error logging in", response.data.message);
     }
    } catch (error) {
-    console.error('Error posting property:', error.response?.data?.message || error.message);
+    toast.error('Error posting property:', error.response?.data?.message || error.message);
    } finally {
     dispatch(setLoading(false))
    }
