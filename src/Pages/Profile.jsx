@@ -38,16 +38,6 @@ const Profile = () => {
   console.log(isAuthenticated)
   const dispatch = useDispatch()
 
-  const handleLogOut = ()=>{
-    const confirmDelete = window.confirm("Are you sure you want to log out?");
-    if (!confirmDelete) return
-    localStorage.removeItem('token');
-    dispatch(logout())
-    toast.success("Logging out")
-    // redirect("/")
-    // console.log(isAuthenticated)
-  }
-
   const token = localStorage.getItem("token");
   console.log("token", token)
 
@@ -65,7 +55,7 @@ const Profile = () => {
     getProfile()
     
   }, [])
-  // console.log("profile", profile)
+  console.log("profile", profile)
 
   const handleDel = async(id)=>{
     console.log("Product Id : ", id);

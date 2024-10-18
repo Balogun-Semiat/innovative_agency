@@ -51,15 +51,15 @@ const LogIn = () => {
 
         console.log("response", response);
 
-        // if(response.status === 401) return alert("User not found")
+        if(response.status === 401) return alert("User not found")
         
-        const { token } = response.data.token;
-
+        const token  = response.data.token;
+        // console.log(token)
         // If token is received, dispatch the login action
         if (token) {
           dispatch(login({ token })); // Dispatch login action to Redux
           localStorage.setItem("tokeeen", token); // Store token in localStorage
-          console.log(token)
+        //   console.log(token)
           toast.success("Login successful!");
   
           // Navigate to home or desired page after successful login
@@ -70,7 +70,7 @@ const LogIn = () => {
         }
         } catch (error) {
             console.log(error);
-            toast.error(`Login error: ${error.response?.data?.message || error.message}`);
+            toast.error(`Login error: ${error}`);
         } finally{
             dispatch(setLoading(false))
         }

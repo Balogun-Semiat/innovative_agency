@@ -13,14 +13,15 @@ const PrivateRoute = ({ element }) => {
   // If the user is authenticated, render the passed element (page/component)
   if (isAuthenticated) {
     return element;
-  } else {
-    // If not authenticated, log the user out and redirect to login
-    dispatch(logout());
-    // return <Navigate to="/login" />;
-}
+  } 
+//   else {
+//     // If not authenticated, log the user out and redirect to login
+//     dispatch(logout());
+//     return <Navigate to="/" />;
+// }
 
   // If not authenticated, redirect to the login page
-//   return <Navigate to="/login" />;
+  return <Navigate to="/login" />;
 };
 
 export default PrivateRoute;
