@@ -10,8 +10,9 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 
-import { setLoading } from "./redux/LoadingSlice";
+import { setLoading } from "../../redux/LoadingSlice";
 import { useDispatch, useSelector } from 'react-redux';
+import { MdOutlineDelete  } from "react-icons/md";
 
 const ConfirmDelete = ({ onDelete }) => {
   const loading = useSelector(state => state.LoadingSlice.isLoading);
@@ -21,7 +22,7 @@ const ConfirmDelete = ({ onDelete }) => {
   return (
     <AlertDialog>
   <AlertDialogTrigger className='bg-red-500 p-2 text-white' disabled={loading}>
-  {loading ? "Deleting..." : "Delete"}
+  {loading ? "Deleting..." : <MdOutlineDelete className='text-xl text-white' />}
   </AlertDialogTrigger>
   <AlertDialogContent>
     <AlertDialogHeader>

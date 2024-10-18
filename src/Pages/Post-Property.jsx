@@ -1,21 +1,31 @@
 import React, {useState} from 'react'
-import Navbar from './LandingPages/Navbar'
 import axios from 'axios';
 import { toast} from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import {useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {login} from './redux/AuthSlice';
-import { setHouseDetails, setRole, setLocation, setDescription, setImages, setPrice } from './redux/PropertySlice';
+import {login} from '../redux/AuthSlice';
+import { setHouseDetails, 
+  setRole, 
+  setLocation, 
+  setDescription, 
+  setImages, 
+  setPrice } from '../redux/PropertySlice';
+  import { setLoading } from '@/redux/LoadingSlice';
+  import { Spin } from "antd";
 
 
 const ListProperty = () => {
-  const isAuthenticated = useSelector((state)=>(state.auth.isAuthenticated));
+  // const isAuthenticated = useSelector((state)=>(state.auth.isAuthenticated));
   // console.log(isAuthenticated)
+
+  const loading = useSelector(state => state.LoadingSlice.isLoading);
 
   
   const houseDetails = useSelector((state) => (state.property.houseDetails));
+  // console.log(houseDetails)
   const role = useSelector(state=> state.property.role);
+  // console.log(role)
   const location = useSelector(state=> state.property.location);
   const description = useSelector(state=> state.property.description);
   const images = useSelector(state=> state.property.images);
@@ -42,9 +52,11 @@ const ListProperty = () => {
   // console.log(result);
 
   const handlePosting = async(e)=>{
+    dispatch(setLoading(true));
     e.preventDefault()
    try {
     const token = localStorage.getItem('token');
+    console.log(token)
     
     const endpoint = "https://server-w1u1.onrender.com/list";
 
@@ -57,36 +69,40 @@ const ListProperty = () => {
       role
     }
 
-    // console.log("payload",payload)
-    const response = await axios.post(endpoint, payload, 
-      {
+    console.log("payload", payload)
+    const response = await axios.post(endpoint, payload, {
       headers: {
           'Content-Type': 'application/json',
-          'Authorization': `bearer ${token}`
+          'Authorization': `Bearer ${token}`
       }
       }
 )
-// console.log(response.status)
-    // console.log("Your response", response.data)
+    console.log("response-stat", response.status)
+    console.log("Your response", response.data)
+    // toast.success("Property posted successfully")
+    // navigate("/all")
   
     if (response.status === 200) {
-      dispatch(login(response.data)); // Assuming you have a login action that sets isAuthenticated
+      // dispatch(login(response.data)); // Assuming you have a login action that sets isAuthenticated
       toast.success("Property posted successfully")
       navigate("/all");
     } else {
-      // console.log("error:", response.data.message);
+      console.log("error:", response.data.message);
       alert("Error logging in", response.data.message);
     }
    } catch (error) {
     console.error('Error posting property:', error.response?.data?.message || error.message);
+   } finally {
+    dispatch(setLoading(false))
    }
   }
 
   return (
     <>
+   
         <div className='w-full bg-blue-400 p-5'>
-        <form action="" className='grid items-center bg-transparent lg:bg-blue-800 md:p-5 lg:mx-auto w-full lg:w-10/12'> 
-            <h3 className='text-xl md:text-3xl font-bold text-white text-center'>Enter your property details here</h3>
+        <form action="" className='grid items-center bg-blue-800 p-5 lg:mx-auto w-fit lg:w-10/12'> 
+            <h3 className='text-3xl font-bold text-white text-center'>Enter your property details here</h3>
             <input type="text" 
             className='my-6 p-2  focus:ring-4 ring-blue-600 rounded-md outline-0'
             onChange={(ev)=> dispatch(setHouseDetails(ev.target.value))}
@@ -99,7 +115,7 @@ const ListProperty = () => {
 
             {/* <label htmlFor="" className='text-white'>Attach images of the property</label> */}
             <input type="file" 
-            multiple onChange={(e)=> dispatch(handleImages(e))}
+            multiple onChange={handleImages}
             className='mb-6 p-2  focus:ring-4 ring-blue-600 rounded-md outline-0 text-white'
             placeholder='Enter images'/>
 
@@ -122,7 +138,9 @@ const ListProperty = () => {
 
             <div className='flex justify-center items-center gap-2'>
             <button 
-            className='my-6 w-fit py-2 px-4 text-orange-600 bg-white rounded-full hover:text-white hover:bg-orange-800 ' onClick={handlePosting}>Post Property</button>
+            className='my-6 w-fit py-2 px-4 text-orange-600 bg-white rounded-full hover:text-white hover:bg-orange-800 ' onClick={handlePosting} disabled={loading}>
+              {loading ? (<> <Spin /> Please wait</>) : ("Post property")}
+            </button>
            </div>
            
         </form>

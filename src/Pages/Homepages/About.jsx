@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from '../Button'
+import Button from '../../components/ui/ButtonNew'
 import WordbyWordText from "../WordbyWordText";
 import interior from "../../img/interior.jpeg";
 import house from "../../img/house.jpg";

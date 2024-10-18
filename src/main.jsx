@@ -5,9 +5,9 @@ import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import { configureStore } from "@reduxjs/toolkit";
 import {Provider} from "react-redux"
-import AuthReducer from "./Pages/redux/AuthSlice.js"
-import PropertyReducer from "./Pages/redux/PropertySlice.js"
-import LoadReducer from "./Pages/redux/LoadingSlice.js"
+import AuthReducer from "./redux/AuthSlice.js"
+import PropertyReducer from "./redux/PropertySlice.js"
+import LoadReducer from "./redux/LoadingSlice.js"
 
 const store = configureStore({
   reducer: {

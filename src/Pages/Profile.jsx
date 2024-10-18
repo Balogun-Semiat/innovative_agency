@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios"
-import Navbar from './LandingPages/Navbar';
 import { FaUser  } from "react-icons/fa6";
 import { MdOutlineDelete, MdModeEdit  } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from './redux/AuthSlice';
+import { logout } from '../redux/AuthSlice';
 import { toast } from 'react-toastify';
-import Loader from './Loader';
+import Loader from '../components/ui/Loader';
 import { useNavigate } from 'react-router-dom';
 import {
   AlertDialog,
@@ -20,8 +19,8 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 
-import ConfirmDelete from './DeleteModal';
-import { setLoading } from './redux/LoadingSlice';
+import ConfirmDelete from '../components/ui/AlertModal';
+import { setLoading } from '../redux/LoadingSlice';
 
 
 
@@ -57,7 +56,7 @@ const Profile = () => {
   }, [])
   console.log("profile", profile)
 
-  const handleDel = async(id)=>{
+  const delProfile = async(id)=>{
     console.log("Product Id : ", id);
 
     const endpoint = `https://server-w1u1.onrender.com/del-eve`
@@ -103,6 +102,11 @@ const Profile = () => {
     navigate(`/edit-post/${id}`)
   }
 
+  const handleLogOut = ()=>{
+    dispatch(logout())
+    navigate('/')
+  }
+
   async function editUser(){
       navigate("/edit-profile")
   }
@@ -124,9 +128,9 @@ const Profile = () => {
                 </span>
             </div>
 
-            <div className='hidden md:flex gap-5 content-center '>
+            <div className='hidden md:flex gap-5 content-center'>
            <div className='group relative'>
-           <ConfirmDelete onDelete={handleDel} className='border h-[30px] px-2 flex items-center rounded-sm '>
+           <ConfirmDelete onDelete={delProfile} className='border h-[30px] px-2 flex items-center rounded-sm '>
               <MdOutlineDelete className='text-2xl text-white' />
             </ConfirmDelete>
             <p className='hidden group-hover:flex absolute -left-7 top-8 p-1 bg-gray-300 rounded-sm text-red-600 text-nowrap text-sm'>Delete Account</p>
@@ -138,7 +142,8 @@ const Profile = () => {
            className='border h-[30px] px-2'> <MdModeEdit className='text-2xl text-white'/> </button> 
            <p className='hidden group-hover:flex absolute -left-7 top-8 p-1 bg-gray-300 rounded-sm text-red-600 text-nowrap text-sm'>Edit Account</p>
            </div>
-            <button className='border h-[30px] px-2 text-sm text-white p-1 rounded-sm '>Logout</button>
+
+            <button className='border h-[30px] px-2 text-sm text-white p-1 rounded-sm' onClick={handleLogOut}>Logout</button>
             </div>
          </div>
 
@@ -147,29 +152,37 @@ const Profile = () => {
             onClick={editUser}> <MdModeEdit className='text-2xl border w-fit px-2'/>
             <span className=''>Edit profile</span></button> 
 
-            <button
-            onClick={handleDel} 
+           <span className='flex items-center'>
+           {/* <button
+            onClick={delProfile} 
             className='flex gap-2 items-center mb-2'><MdOutlineDelete className='text-2xl border w-fit px-2 rounded-sm' /> 
-            <span className=''>Delete profile</span></button>
+            </button> */}
+             <ConfirmDelete onDelete={delProfile}>
+             <MdOutlineDelete className='text-2xl text-white' />
+             </ConfirmDelete>
+            <p className=''>Delete profile</p>
+           </span>
+           
 
             <button className='border w-fit px-2 text-sm p-1 rounded-sm'
             onClick={handleLogOut}>Logout</button>
           </div>
+          
          
-          <div>
+          <div className='text-blue-800'>
             <div>
             <label htmlFor="">First Name:</label>
-            <p className='border w-full'>{profile.firstName}</p>
+            <p className='border-2 border-blue-950 w-full p-2 '>{profile.firstName}</p>
             </div>
 
             <div className='mt-3'>
             <label htmlFor="name" >Last Name:</label>
-            <p className='border w-full'>{profile.lastName}</p>
+            <p className='border-2 border-blue-950 w-full p-2'>{profile.lastName}</p>
             </div>
 
             <div className='mt-3'>
             <label htmlFor="">Email</label>
-            <p className='border w-full'>{profile.email}</p>
+            <p className='border-2 border-blue-950 w-full p-2'>{profile.email}</p>
             </div>
           </div>
           </div>
@@ -186,12 +199,12 @@ const Profile = () => {
                 <div className='w-full flex gap-3'> 
                 {property.images.map((image)=>(
                 <div className=''>
-                  <img src={image.secure_url} alt="" className='h-[150px] md:h-[250px] md:w-[240px]' />
+                  <img src={image.secure_url} alt="" className='h-[170px] lg:h-[250px] lg:w-[240px]' />
                 </div>
         ))}
                 </div>
                 
-                <div className='bg-gray-400 p-2'>
+                <div className='bg-gray-400 p-2 w-[200px] lg:w-[240px]'>
                 <h3>Desc: {property.description}</h3>
                 <h3>Details: {property.houseDetails}</h3>
                 <p>Location: {property.location}</p>

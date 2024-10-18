@@ -5,7 +5,7 @@ import { toast} from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { IoEyeSharp } from "react-icons/io5";
 import { FaEyeSlash } from "react-icons/fa6";
-import { setLoading } from './redux/LoadingSlice';
+import { setLoading } from '../redux/LoadingSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Spin } from "antd";
 import welc from "../img/welc.jpeg"

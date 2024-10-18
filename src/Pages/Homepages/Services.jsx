@@ -1,5 +1,5 @@
 import React from 'react';
-import CardProp from '../CardProp';
+import CardProp from '../../components/ui/CardProp';
 import { FaConnectdevelop, FaHouseDamage  } from "react-icons/fa";
 import { PiPlugsConnectedFill } from "react-icons/pi";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";

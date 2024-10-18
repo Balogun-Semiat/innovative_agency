@@ -18,14 +18,16 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'; 
 import EditProfile from './Pages/EditProfile';
 import { useDispatch } from 'react-redux';
-import { checkAuth } from './Pages/redux/AuthSlice';
+import { checkAuth } from './redux/AuthSlice';
 import Contact from './Pages/Contact';
-import Navbar from './Pages/LandingPages/Navbar';
-import { login, logout } from './Pages/redux/AuthSlice';
-import { validateToken, checkTokenAndNotify } from "./Pages/Authorization/ValidateToken";
+import Navbar from './components/ui/Navbar';
+import { login, logout } from './redux/AuthSlice';
+import { validateToken } from "./Authorization/ValidateToken";
 import {jwtDecode} from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Footer from './components/ui/Footer';
+import { useSelector } from 'react-redux';
 // import { checkTokenAndNotify } from './Pages/Authorization/checkToken';
 
 AOS.init();
@@ -33,25 +35,9 @@ AOS.init();
  
 function App() {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    const token = localStorage.getItem('token'); 
-    const handleLogIn = async() =>{
-      if (token && validateToken(token)) {
-        // If token is valid, log the user in
-        console.log("tokenn", token)
-        dispatch(login({ token }));
-        // navigate("/home");
-        // toast.success("Logging user in")
-      } else {
-        // If token is invalid, log the user out
-        localStorage.removeItem('token');
-        dispatch(logout());
-      }
-    }
-    handleLogIn()
-  }, [dispatch]);
+  const navigate = useNavigate();
+  // const user = useSelector((state)=>(state.auth.user));
+  // console.log("first", user)
 
   const validateToken = (token) => {
     try {
@@ -60,19 +46,36 @@ function App() {
     } catch (error) {
       return false;
     }
+    
   };
 
+
   useEffect(() => {
-    checkTokenAndNotify(dispatch, () => dispatch(logout())); // Call the token check function on app load
+    const token = localStorage.getItem('token');
+    const lastName = localStorage.getItem('userLastName');
+
+    const handleLogIn = async() =>{
+      if (token && validateToken(token)) {
+        dispatch(login({ token, lastName}));
+      } else if (token && !validateToken(token)) {
+        toast.warning('Your session has expired. You will be logged out.');
+        setTimeout(() => {
+          dispatch(logout());
+        }, 5000); 
+      }
+    }
+    handleLogIn()
   }, [dispatch]);
+
+  
+  // useEffect(() => {
+    // checkTokenAndNotify(dispatch, () => dispatch(logout())); // Call the token check function on app load
+  // }, [dispatch]);
 
   return (
     <>
     <Navbar />
     <Routes>
-      {/* <Route path="/" element= {<PrivateRoute element={<Homepage/>} />} /> */}
-      {/* <Route path="/sign-up" element={<PrivateRoute element={<SignUp />} />} /> */}
-      {/* <Route path="/login" element={<PrivateRoute element={<LogIn />} />} /> */}
       <Route path='/' element={<Homepage />} />
       <Route path='/login' element={<LogIn />} />
       <Route path='/sign-up' element={<SignUp />} />
@@ -87,9 +90,9 @@ function App() {
       <Route path="/edit-post/:id" element={<PrivateRoute element={<EditPost />} />} />
       <Route path="/edit-profile" element={<PrivateRoute element={<EditProfile />} />} />
       <Route path="/contact-us" element={<PrivateRoute element={<Contact />} />} />
-   
     </Routes>
-    
+    <Footer />
+
     <ToastContainer
     position="top-center"
     autoClose={3000}

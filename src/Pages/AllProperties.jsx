@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import Navbar from './LandingPages/Navbar'
 import axios from 'axios'
 import { Link, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import SkeletonLoader from './Skeleton'
+import SkeletonLoader from '../components/ui/Skeleton'
 
 const AllProperties = () => {
   // fetch properties from API here and render them on the page
@@ -36,7 +35,6 @@ const AllProperties = () => {
   if (loading) {
     return (
       <div>
-        <Navbar />
         <SkeletonLoader /> {/* Show skeleton while loading */}
       </div>
     );
@@ -60,7 +58,7 @@ const AllProperties = () => {
                  )
                }
                </div>
-              <div className='text-lg leading-9 font-semibold'> 
+              <div className='text-lg leading-9 font-semibold p-2'> 
               <p>Details: {item.houseDetails}</p>
                <p>{item.description}</p>
                <p>Location: {item.location}</p>

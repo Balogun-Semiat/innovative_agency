@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from './Navbar';
 import SecOne from './LandingPage';
 import { useSelector } from 'react-redux';
 

@@ -1,8 +1,7 @@
 import React from 'react'
-import Navbar from '../LandingPages/Navbar'
 import { Carousel} from "antd"
 import { Outlet , Link} from 'react-router-dom'
-import Button from '../Button'
+import Button from '../../components/ui/ButtonNew'
 import photo from "../../img/OIP.jpeg"
 import photo2 from "../../img/photo2.jpeg"
 import finehouse from "../../img/finehouse.jpg"

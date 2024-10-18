@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import { useParams, Link } from 'react-router-dom';
-import Loader from './Loader';
-import Navbar from './LandingPages/Navbar';
+import Loader from '../components/ui/Loader';
 import Message from './Message';
 import { FaAngleLeft } from "react-icons/fa6";
 
@@ -64,8 +63,8 @@ const ViewDetails = () => {
         <p className='p-2 text-white text-xl' style={{fontFamily:"sans-serif"}}>Pictures of the property</p>
 
       <div className='w-full flex gap-3'> 
-          {property.images.map((image)=>(
-              <div className=''>
+          {property.images.map((image, index)=>(
+              <div key={index} className=''>
                 <img src={image.secure_url} alt=""
                 className='h-[150px] md:h-[250px]' />
               </div>

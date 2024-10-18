@@ -24,7 +24,7 @@ export const PropertySlice = createSlice({
             state.price = action.payload;
         },
         setImages(state, action) {
-            state.images = action.payload;
+            state.images.push(action.payload); // Append new base64 image strings to the array
         },
         setRole(state, action){
             state.role = action.payload;

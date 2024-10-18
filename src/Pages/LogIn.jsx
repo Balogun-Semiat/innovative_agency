@@ -3,20 +3,20 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from './redux/AuthSlice';
+import { login } from '../redux/AuthSlice';
 import { toast } from 'react-toastify';
-import Loader from './Loader';
-import {setLoading} from "./redux/LoadingSlice"
+import Loader from '../components/ui/Loader';
+import {setLoading} from "../redux/LoadingSlice"
 import { Spin } from "antd";
-import Navbar from './LandingPages/Navbar';
-// import welcome from "../img/welcome.gif"
-// import happy from "../img/happy.jpeg"
 import welc from "../img/welc.jpeg"
 
 
 const LogIn = () => {
     const loading = useSelector(state => state.LoadingSlice.isLoading);
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+    const user = useSelector((state)=>(state.auth.user));
+    console.log("user", user)
+
     console.log("auth", isAuthenticated)
 
     const [email, setEmail] = useState("")
@@ -25,11 +25,6 @@ const LogIn = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
    
-
-    const myStyle = {
-        // borderRadius: "40px 40px 0 0",
-        fontFamily: ""
-    }
 
     const handleLogIn = async()=>{
         dispatch(setLoading(true))
@@ -54,15 +49,19 @@ const LogIn = () => {
         if(response.status === 401) return alert("User not found")
         
         const token  = response.data.token;
-        // console.log(token)
-        // If token is received, dispatch the login action
+        const user  = response.data.user.lastName;
+
+     
+
+        console.log(token, user)
+       
         if (token) {
-          dispatch(login({ token })); // Dispatch login action to Redux
-          localStorage.setItem("tokeeen", token); // Store token in localStorage
-        //   console.log(token)
+            localStorage.setItem("token", token);
+            localStorage.setItem('userLastName', user); 
+            dispatch(login({ token, user })); 
+          console.log(token, user)
           toast.success("Login successful!");
-  
-          // Navigate to home or desired page after successful login
+
           navigate("/home");
         } else{
             console.log("error: No token provided");
@@ -78,7 +77,7 @@ const LogIn = () => {
     
   return (
     <>
-        <div className='flex bg-lemon content-center gap-8 items-center content-center p-5 lg:pl-12 lg:h-[84vh]' style={{fontFamily:"cursive"}}>
+        <div className='flex bg-lemon content-center gap-8 items-center content-center p1-0 lg:pl-5 lg:pl-12 h-[70vh] lg:h-[84vh]' style={{fontFamily:"cursive"}}>
         
         <div className='grid bg-white mx-auto p-5 shadow-lg w-full lg:w-1/2 '>
             <h1 className='text-xl text-center mb-5 text-lemon' style={{fontFamily:""}}>Log In Here</h1>

@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import Button from '../Button';
+import Button from '../../components/ui/ButtonNew';
 import { useNavigate, Link, Outlet } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { login, logout } from '../redux/AuthSlice';
+import { login, logout } from '../../redux/AuthSlice';
 import { CgProfile } from "react-icons/cg";
 import { FaBars, FaAngleDown} from "react-icons/fa6";
 import { FaTimes } from "react-icons/fa";
@@ -12,16 +12,20 @@ const Navbar = () => {
 
   const navigate = useNavigate()
   const isAuthenticated = useSelector((state)=>(state.auth.isAuthenticated));
-  console.log("Navcheck", isAuthenticated)
+
+  // const user = useSelector((state)=>(state.auth.user))
+  // console.log("Navcheck", isAuthenticated)
 
   const dispatch = useDispatch();
   
+  const lastName = localStorage.getItem('userLastName'); 
+
   const handleLogIn = ()=>{
     navigate("/login")
   }
   const handleLogOut = ()=>{
-    sessionStorage.removeItem('isFirstLogin');
     localStorage.removeItem('token');
+    localStorage.removeItem('userLastName');
     dispatch(logout())
     navigate('/')
   }
@@ -87,11 +91,9 @@ const Navbar = () => {
 
 
             <ul className={`flex bg-gray-200 py-5 lg:bg-transparent lg:flex flex-col lg:flex-row lg:block gap-6  text-blue-950 items-center w-100 ${isOpen ? "block" : "hidden"}`}>
-            {/* <li>Buy</li> */}
-            {/* <li><Link to={"/rent"}>Rent</Link></li> */}
             <li className='hover:border-b-2 border-b-gray-600' onClick={goToHome}>Home</li>
-            <li className='hover:border-b-2 border-b-gray-600'><a href="#about-us">About</a></li>
-            <li className='hover:border-b-2 border-b-gray-600'><a href="#services">Services</a></li>
+            {/* <li className='hover:border-b-2 border-b-gray-600'><a href="#about-us">About</a></li> */}
+            {/* <li className='hover:border-b-2 border-b-gray-600'><a href="#services">Services</a></li> */}
             <li className='hover:border-b-2 border-b-gray-600'><Link to={"/list-property"}>Post Property</Link></li>
             <li className='hover:border-b-2 border-b-gray-600'><Link to={"/all"}>See all Properties</Link></li>
             <li className='hover:border-b-2 border-b-gray-600'><Link to={'/contact-us'}>Contact us</Link></li>
@@ -99,7 +101,9 @@ const Navbar = () => {
             <div className='rounded-full flex justify-center items-center'>
               <Link to="/profile"> 
               <span className='flex items-center content-center gap-1'><CgProfile className='w-[30px] h-[30px]' /> 
-              <p className='text-sm'>Profile</p></span>
+              <p className='text-sm'>Welcome {lastName || 'Guest'}!  </p>
+              {/* {lastName ? <p>Welcome, {lastName}!</p> : <p>Welcome, Guest!</p>} */}
+              </span>
               </Link>
             </div>
 

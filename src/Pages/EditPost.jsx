@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Navbar from './LandingPages/Navbar';
-import { setHouseDetails, setRole, setLocation, setDescription, setImages, setPrice } from './redux/PropertySlice';
+import { setHouseDetails, setRole, setLocation, setDescription, setImages, setPrice } from '../redux/PropertySlice';
 import { useNavigate } from 'react-router-dom'; 
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -55,7 +54,6 @@ const EditPost = () => {
 
   return (
     <div>
-        <Navbar />
         <div className='w-full bg-blue-400 p-5'>
         <form action="" className='grid items-center bg-blue-800 p-5 lg:mx-auto w-fit lg:w-10/12'> 
             <h3 className='text-3xl font-bold text-white text-center'>Make changes to your post here</h3>

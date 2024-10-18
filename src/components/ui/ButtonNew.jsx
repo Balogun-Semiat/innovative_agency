@@ -2,7 +2,7 @@ import React from "react";
 
 
 
-const Button = ({innertext, className, handleClick, dataaos}) => {
+const ButtonNew = ({innertext, className, handleClick, dataaos}) => {
   return (
     <div>
         <button dataaos={dataaos} onClick={handleClick} className={className}>
@@ -13,4 +13,4 @@ const Button = ({innertext, className, handleClick, dataaos}) => {
   )
 }
 
-export default Button
+export default ButtonNew

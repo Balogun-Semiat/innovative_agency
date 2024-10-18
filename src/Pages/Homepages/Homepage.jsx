@@ -4,9 +4,9 @@ import About from './About'
 import FeaturedHouses from './FeaturedHouses'
 import Services from './Services'
 import How from './How'
-import Navbar from '../LandingPages/Navbar'
-import Loader from '../Loader';
-import  EmblaCarousel  from '../EmblaCarousel'
+import Navbar from '../../components/ui/Navbar'
+import Loader from '../../components/ui/Loader';
+
 
 
 const Homepage = () => {
@@ -29,7 +29,7 @@ const Homepage = () => {
         <FeaturedHouses />
         <Services />
         <How />
-        {/* <EmblaCarousel /> */}
+
     </div>
   )
 }
