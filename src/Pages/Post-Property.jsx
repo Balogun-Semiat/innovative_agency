@@ -138,7 +138,7 @@ const ListProperty = () => {
 
             <div className='flex justify-center items-center gap-2'>
             <button 
-            className='my-6 w-fit py-2 px-4 text-orange-600 bg-white rounded-full hover:text-white hover:bg-orange-800 ' onClick={handlePosting} disabled={loading}>
+            className='my-6 w-fit py-2 px-4 text-blue-800 bg-white rounded-full hover:text-white hover:bg-blue-400 ' onClick={handlePosting} disabled={loading}>
               {loading ? (<> <Spin /> Please wait</>) : ("Post property")}
             </button>
            </div>

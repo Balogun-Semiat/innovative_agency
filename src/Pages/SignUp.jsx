@@ -69,21 +69,21 @@ const SignUp = () => {
         <form action="" className='grid p-5 shadow-lg '> 
             <h3 className='text-3xl font-bold text-center'>Register your Details Here</h3>
             <input type="text" 
-            className='my-6 p-2 shadow-md focus:ring-4 ring-blue-600 rounded-md outline-0 bg-yellow-300'
+            className='my-6 p-2 shadow-md focus:ring-4 ring-blue-600 rounded-md outline-0 bg-gray-200'
             onChange={(ev)=>setFirstName(ev.target.value)}
             placeholder='Enter your first name'/>
             <input type="text" 
-            className='mb-6 p-2 shadow-md focus:ring-4 ring-blue-600 rounded-md outline-0 bg-yellow-300'
+            className='mb-6 p-2 shadow-md focus:ring-4 ring-blue-600 rounded-md outline-0 bg-gray-200'
             onChange={(ev)=>setLastName(ev.target.value)}
             placeholder='Enter your last name'/>
             <input type="email" 
-            className='mb-6 p-2 shadow-md focus:ring-4 ring-blue-600 rounded-md outline-0 bg-yellow-300'
+            className='mb-6 p-2 shadow-md focus:ring-4 ring-blue-600 rounded-md outline-0 bg-gray-200'
             onChange={(ev)=>setEmail(ev.target.value)}
             placeholder='Enter your email'/>
             
             <div className='relative'>
             <input type={showPassword ? "text" : "password"}
-            className='mb-6 p-2 w-full shadow-md  focus:ring-4 ring-blue-600 rounded-md outline-0 bg-yellow-300' 
+            className='mb-6 p-2 w-full shadow-md  focus:ring-4 ring-blue-600 rounded-md outline-0 bg-gray-200' 
             onChange={(ev)=>setPassword(ev.target.value)}
             placeholder='Enter your password'/>
             <button 
@@ -95,7 +95,7 @@ const SignUp = () => {
 
             <label htmlFor="" className='text-white'>Are you registering as a buyer or seller?</label>
             <select onChange={(ev)=>setRole(ev.target.value)} 
-            className='p-2 shadow-md bg-yellow-300'
+            className='p-2 shadow-md bg-gray-200'
             name={role} 
             defaultValue={"seller"} id="">
                 <option value="seller">Seller</option>
@@ -104,7 +104,7 @@ const SignUp = () => {
 
             <div className='flex justify-center items-center gap-2'>
             <button 
-            className='my-6 w-fit py-2 shadow-md px-4 text-white-600 bg-yellow-300 rounded-md hover:text-white hover:bg-blue-300' onClick={handleSignUp}
+            className='my-6 w-fit py-2 shadow-md px-4 text-blue-950 font-semibold bg-white border-2 border-blue-800 rounded-md hover:text-white hover:bg-blue-800' onClick={handleSignUp}
             disabled={loading}>
                  {loading ? <Spin /> : "Sign Up"}
             </button>

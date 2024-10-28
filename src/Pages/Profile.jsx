@@ -21,6 +21,7 @@ import {
 
 import ConfirmDelete from '../components/ui/AlertModal';
 import { setLoading } from '../redux/LoadingSlice';
+// import { DialogDemo } from '@/components/ui/EditDialog';
 
 
 
@@ -34,11 +35,11 @@ const Profile = () => {
   const loading = useSelector(state => state.LoadingSlice.isLoading);
   const isAuthenticated = useSelector((state)=>(state.auth.isAuthenticated))
 
-  console.log(isAuthenticated)
+  // console.log(isAuthenticated)
   const dispatch = useDispatch()
 
   const token = localStorage.getItem("token");
-  console.log("token", token)
+  // console.log("token", token)
 
   useEffect(() => {
     const getProfile = async()=>{
@@ -48,13 +49,13 @@ const Profile = () => {
           "Authorization": `bearer ${token}`
         }
       })
-      console.log("res.data: ",response.data.user)
+      // console.log("res.data: ",response.data.user)
       setProfile(response.data.user)
     }
     getProfile()
     
   }, [])
-  console.log("profile", profile)
+  // console.log("profile", profile)
 
   const delProfile = async(id)=>{
     console.log("Product Id : ", id);
@@ -66,7 +67,7 @@ const Profile = () => {
           "Authorization": `Bearer ${token}`
         }  
       })
-      console.log(response.data.message)
+      // console.log(response.data.message)
       toast.success("User and all associated posts have been deleted")
       dispatch(logout())
       // setProperties(properties.filter(property => property._id !== id));
@@ -80,27 +81,27 @@ const Profile = () => {
     try {
       const endpoint =  `https://server-w1u1.onrender.com/del-one/${id}`
       const response = await axios.delete(endpoint)
-      console.log(response.data.message)
+      // console.log(response.data.message)
       toast.success("Property has been deleted")
 
       // setProperties(properties.filter(property => property._id !== id));
       profile.postings.filter(posting => posting._id !== id);
-      console.log(profile.postings)
+      // console.log(profile.postings)
       
 
     } catch (error) {
-      console.log(error);
-      toast.error("An error occurred while deleting the property");
+      // console.log(error);
+      toast.error("An error occurred while deleting the property", error);
 
     // If deletion fails, revert to the previous postings (you can store previous state for this)
       setProfile({ ...profile, postings: [...profile.postings] });
     } 
   } 
 
-  const handleEdit = async(id)=>{
-    console.log("Product Id : ", id);
-    navigate(`/edit-post/${id}`)
-  }
+  // const handleEdit = async(id)=>{
+  //   console.log("Product Id : ", id);
+  //   navigate(`/edit-post/${id}`)
+  // }
 
   const handleLogOut = ()=>{
     dispatch(logout())
@@ -218,6 +219,8 @@ const Profile = () => {
 
                 <button onClick={()=>handleEdit(property._id)}
                 className='bg-orange-600 p-2 text-white'>Edit Post</button>
+
+                {/* <DialogDemo /> */}
                 </div>
                 </div>
   

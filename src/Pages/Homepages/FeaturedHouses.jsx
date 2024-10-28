@@ -43,7 +43,7 @@ const EmblaCarousel = () => {
   return (
     <div className="embla bg-gray-200 py-10 px-5 lg:px-16">
       <h3 className='text-3xl lg:text-4xl font-bold text-blue-950'>Featured Houses</h3>
-      <p className='underline mt-3 text-blue-600'>
+      <p className='underline my-3 text-blue-600'>
            <Link to="/all">View available properties</Link>
       </p>
       <div className="embla__viewport" ref={emblaRef}>
@@ -55,8 +55,9 @@ const EmblaCarousel = () => {
                 alt={property.title}
                 className="featured-img rounded-md w-full h-full"
               />
-              <p className='location text-xl text-blue-900 font-bold'>Location: {property.location}</p>
-              <p className='price text-2xl '>Price: {property.price}</p>
+              <div className='bg-white shadow-md rounded-md py-1 px-2 location'>
+              <p className=' text-sm text-blue-900 font-bold'>Location: {property.location}</p>
+              </div>
             </div>
           ))}
         </div>
