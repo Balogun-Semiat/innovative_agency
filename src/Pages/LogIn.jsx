@@ -83,14 +83,14 @@ const LogIn = () => {
             <label htmlFor="Email" className='text-blue-950'>Enter your Email:</label>
             <input type="email"
             id='email' 
-            className='mb-6 shadow-md p-2  focus:ring-4 ring-blue-600 rounded-md border-black outline-0 '
+            className='mb-6 shadow-md p-2  focus:ring-2 focus:border-0 ring-blue-600 rounded-md border border-black bg-gray-100 outline-0 '
             onChange={(ev)=>setEmail(ev.target.value)}
             // placeholder='Enter your email'
             />
             
             <label htmlFor="password" className='text-blue-950'>Enter your password:</label>
             <input type="password"
-            className='mb-6 p-2 shadow-md border-black focus:ring-4 ring-blue-600 rounded-md outline-0' 
+            className='mb-6 p-2 shadow-md border border-black focus:ring-2 focus:border-0 ring-blue-600 bg-gray-100 rounded-md outline-0' 
             onChange={(ev)=>setPassword(ev.target.value)}
             // placeholder='Enter your password'
             />
