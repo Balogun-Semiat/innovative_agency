@@ -65,7 +65,7 @@ const SignUp = () => {
             <img src={welc} className='w-full h-bg-green-300 h-[84vh]' alt="" />
         </div>
 
-        <div className='w-full lg:w-1/2 bg-white m-5'>
+        <div className='w-full lg:w-1/2 bg-white my-5'>
         <form action="" className='grid p-5 shadow-lg '> 
             <h3 className='text-2xl mb-2 font-bold text-center'>Register your Details Here</h3>
             <input type="text" 

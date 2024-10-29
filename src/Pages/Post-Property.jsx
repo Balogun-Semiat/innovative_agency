@@ -100,9 +100,9 @@ const ListProperty = () => {
   return (
     <>
    
-        <div className='bg-blue-400 p-5'>
-        <form action="" className=''> 
-           <div className='grid items-center justify-center bg-blue-800 shadow-lg p-5 mx-auto w-full md:w-fit'>
+        <div className='flex justify-center '>
+        <form action="" className='grid p-5 shadow-lg w-full md:w-8/12 bg-blue-800 m-5'> 
+        
            <h3 className='text-2xl font-bold text-white text-center'>Enter your property details here</h3>
             <input type="text" 
             className='my-6 p-2  focus:ring-4 ring-blue-600 rounded-md outline-0'
@@ -143,7 +143,7 @@ const ListProperty = () => {
               {loading ? (<> <Spin /> Please wait</>) : ("Post property")}
             </button>
            </div>
-           </div>
+          
            
         </form>
     </div>
