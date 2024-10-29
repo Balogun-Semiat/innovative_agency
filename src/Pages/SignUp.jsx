@@ -15,7 +15,7 @@ const SignUp = () => {
     const loading = useSelector(state => state.LoadingSlice.isLoading);
     const dispatch = useDispatch();
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
-    console.log("sign-up", isAuthenticated)
+    // console.log("sign-up", isAuthenticated)
 
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -43,10 +43,10 @@ const SignUp = () => {
                 password,
                 role
             }
-            console.log(payload)
+            // console.log(payload)
 
             const response = await axios.post(endpoint, payload)
-            console.log(response.data)
+            // console.log(response.data)
             toast.success("User Successfully Registered")
             // alert("User Successfully Registered")
             navigate("/login")
@@ -67,7 +67,7 @@ const SignUp = () => {
 
         <div className='w-full lg:w-1/2 bg-white m-5'>
         <form action="" className='grid p-5 shadow-lg '> 
-            <h3 className='text-3xl font-bold text-center'>Register your Details Here</h3>
+            <h3 className='text-2xl mb-2 font-bold text-center'>Register your Details Here</h3>
             <input type="text" 
             className='my-6 p-2 shadow-md focus:ring-4 ring-blue-600 rounded-md outline-0 bg-gray-200'
             onChange={(ev)=>setFirstName(ev.target.value)}

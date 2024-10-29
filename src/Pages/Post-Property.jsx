@@ -100,9 +100,10 @@ const ListProperty = () => {
   return (
     <>
    
-        <div className='w-full bg-blue-400 p-5'>
-        <form action="" className='grid items-center bg-blue-800 p-5 lg:mx-auto w-fit lg:w-10/12'> 
-            <h3 className='text-3xl font-bold text-white text-center'>Enter your property details here</h3>
+        <div className='bg-blue-400 p-5'>
+        <form action="" className=''> 
+           <div className='grid items-center justify-center bg-blue-800 shadow-lg p-5 mx-auto w-full md:w-fit'>
+           <h3 className='text-2xl font-bold text-white text-center'>Enter your property details here</h3>
             <input type="text" 
             className='my-6 p-2  focus:ring-4 ring-blue-600 rounded-md outline-0'
             onChange={(ev)=> dispatch(setHouseDetails(ev.target.value))}
@@ -141,6 +142,7 @@ const ListProperty = () => {
             className='my-6 w-fit py-2 px-4 text-blue-800 bg-white rounded-full hover:text-white hover:bg-blue-400 ' onClick={handlePosting} disabled={loading}>
               {loading ? (<> <Spin /> Please wait</>) : ("Post property")}
             </button>
+           </div>
            </div>
            
         </form>

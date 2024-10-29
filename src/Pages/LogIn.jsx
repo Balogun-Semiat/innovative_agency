@@ -79,18 +79,18 @@ const LogIn = () => {
         <div className='flex bg-gray-200 content-center gap-8 items-center content-center p1-0 lg:pl-5 lg:pl-12 h-[70vh] lg:h-[84vh]' style={{fontFamily:"cursive"}}>
         
         <div className='grid bg-white mx-auto p-5 lg:p-16 shadow-lg rounded-md w-10/12 lg:w-1/2'>
-            <h1 className='text-xl text-center mb-5 text-blue-950' style={{fontFamily:""}}>Log In Here</h1>
+            <h1 className='text-xl text-center mb-5 text-blue-950' style={{fontFamily:"sans-serif"}}>Log In Here</h1>
             <label htmlFor="Email" className='text-blue-950'>Enter your Email:</label>
             <input type="email"
             id='email' 
-            className='mb-6 shadow-md p-2 bg-blue-100  focus:ring-4 ring-blue-600 rounded-md border outline-0 '
+            className='mb-6 shadow-md p-2  focus:ring-4 ring-blue-600 rounded-md border-black outline-0 '
             onChange={(ev)=>setEmail(ev.target.value)}
             // placeholder='Enter your email'
             />
             
             <label htmlFor="password" className='text-blue-950'>Enter your password:</label>
             <input type="password"
-            className='mb-6 p-2 shadow-md bg-blue-100 focus:ring-4 ring-blue-600 rounded-md outline-0' 
+            className='mb-6 p-2 shadow-md border-black focus:ring-4 ring-blue-600 rounded-md outline-0' 
             onChange={(ev)=>setPassword(ev.target.value)}
             // placeholder='Enter your password'
             />
